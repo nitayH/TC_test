@@ -1,5 +1,6 @@
 import os
 import subprocess
+import configparser
 
 def get_system_property(property: str):
     result = subprocess.run(["echo", f"%{property}%"], capture_output=True, text=True)
@@ -19,6 +20,10 @@ def main():
             print(f.read())
     else: 
         print("didn't find property file")
+
+    for key, value in os.environ.items():
+        if "TEAMCITY" in key:
+            print(f"{key} = {value}")
 
 
 
