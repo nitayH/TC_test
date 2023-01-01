@@ -12,7 +12,7 @@ def main():
     print(f"cwd: {cwd}")
     print("this is master test")
 
-    if os.path.exists("TEAMCITY_BUILD_PROPERTIES_FILE"):
+    if "TEAMCITY_BUILD_PROPERTIES_FILE" in os.environ:
         properties_file = os.environ["TEAMCITY_BUILD_PROPERTIES_FILE"]
         print(f"found the properties file: {properties_file}")
         with open(properties_file) as f: 
