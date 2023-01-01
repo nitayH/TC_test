@@ -11,6 +11,7 @@ def main():
     cwd = os.getcwd()
     print(f"cwd: {cwd}")
     print("this is a test")
+    print("this is another test")
 
 
 
