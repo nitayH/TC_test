@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<build-type xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" uuid="5a7fd809-107c-4ba7-b9a6-a3df998808fd" xsi:noNamespaceSchemaLocation="https://www.jetbrains.com/teamcity/schemas/2021.1/project-config.xsd">
+  <name>Build</name>
+  <description />
+  <settings>
+    <parameters />
+    <build-runners>
+      <runner id="RUNNER_2" name="" type="python-runner">
+        <parameters>
+          <param name="command" value="file" />
+          <param name="coverageArgs" value="--omit=*lib*" />
+          <param name="envTool" value="none" />
+          <param name="installToolPackage" value="true" />
+          <param name="isCoverageEnabled" value="false" />
+          <param name="isTestReportingEnabled" value="true" />
+          <param name="poetryExecutable" value="poetry" />
+          <param name="pythonVersion" value="python3" />
+          <param name="scriptFile" value="main.py" />
+          <param name="teamcity.step.mode" value="default" />
+          <param name="virtualenvEnvName" value=".venv" />
+          <param name="virtualenvFile" value="requirements.txt" />
+        </parameters>
+      </runner>
+      <runner id="RUNNER_4" name="Setting Redefine" type="simpleRunner">
+        <parameters>
+          <param name="script.content"><![CDATA[export TEAMCITY_GIT_PATH=%teamcity.build.checkoutDir%
+export TEAMCITY_HEAD_COMMIT_HASH=%build.vcs.number%
+export TEAMCITY_PIPELINE_NAME=%teamcity.project.id%
+export TEAMCITY_JOB_NAME=%system.teamcity.buildConfName%
+export TEAMCITY_GIT_ACTION=%teamcity.pullRequest.branch.pullrequests%
+export TEAMCITY_SOURCE_BRANCH=%teamcity.pullRequest.source.branch%
+export TEAMCITY_TARGET_BRANCH=%teamcity.pullRequest.target.branch%
+
+"##teamcity[setParameter name='REDIFINE_GIT_PATH' value='%teamcity.build.checkoutDir%']"
+
+
+
+echo "setting redefine with parameter:" 
+echo "git path: $TEAMCITY_GIT_PATH"
+echo "haed commit hash: $TEAMCITY_HEAD_COMMIT_HASH" 
+echo "git action: $TEAMCITY_GIT_ACTION"
+echo "source branch: $TEAMCITY_SOURCE_BRANCH"
+echo "target branch: $TEAMCITY_TARGET_BRANCH" 
+echo "pipeline name: $TEAMCITY_PIPELINE_NAME"
+echo "job name: $TEAMCITY_JOB_NAME"
+python main.py]]></param>
+          <param name="teamcity.step.mode" value="default" />
+          <param name="use.custom.script" value="true" />
+        </parameters>
+      </runner>
+    </build-runners>
+    <vcs-settings>
+      <vcs-entry-ref root-id="TcTest_GitGithubComNitayHTcTestGitRefsHeadsMaster" />
+    </vcs-settings>
+    <requirements />
+    <build-triggers>
+      <build-trigger id="TRIGGER_2" type="vcsTrigger">
+        <parameters>
+          <param name="branchFilter" value="+:*" />
+          <param name="enableQueueOptimization" value="true" />
+          <param name="quietPeriodMode" value="DO_NOT_USE" />
+        </parameters>
+      </build-trigger>
+    </build-triggers>
+    <build-extensions>
+      <extension id="perfmon" type="perfmon">
+        <parameters>
+          <param name="teamcity.perfmon.feature.enabled" value="true" />
+        </parameters>
+      </extension>
+      <extension id="BUILD_EXT_1" type="pullRequests">
+        <parameters>
+          <param name="authenticationType" value="token" />
+          <param name="filterAuthorRole" value="EVERYBODY" />
+          <param name="providerType" value="github" />
+          <param name="secure:accessToken" value="credentialsJSON:e418361c-b817-4f35-a04f-6abd1708a4db" />
+        </parameters>
+      </extension>
+    </build-extensions>
+    <cleanup />
+  </settings>
+</build-type>
+
