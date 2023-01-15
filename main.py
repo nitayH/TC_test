@@ -13,6 +13,8 @@ def main():
     print(f"cwd: {cwd}")
     print("this is master test")
 
+    print("some big change")
+
     pf = os.environ["TEAMCITY_BUILD_PROPERTIES_FILE"]
 
     with open(pf) as f: 
