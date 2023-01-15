@@ -8,8 +8,7 @@
   <param name="ignoreKnownHosts" value="true" />
   <param name="secure:password" value="" />
   <param name="submoduleCheckout" value="CHECKOUT" />
-  <param name="teamcity:branchSpec"><![CDATA[refs/heads/*
-+:refs/pull/*/head]]></param>
+  <param name="teamcity:branchSpec" value="+:refs/pull/*" />
   <param name="teamcitySshKey" value="TC for github" />
   <param name="url" value="git@github.com:nitayH/TC_test.git" />
   <param name="useAlternates" value="AUTO" />
