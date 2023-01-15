@@ -12,6 +12,7 @@ def main():
     cwd = os.getcwd()
     print(f"cwd: {cwd}")
     print("this is master test")
+    print("some change")
 
     if "TEAMCITY_BUILD_PROPERTIES_FILE" in os.environ:
         properties_file = os.environ["TEAMCITY_BUILD_PROPERTIES_FILE"]
