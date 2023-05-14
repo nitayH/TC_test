@@ -14,17 +14,14 @@ def main():
     print("this is master test")
     print("some change")
 
-    if "TEAMCITY_BUILD_PROPERTIES_FILE" in os.environ:
-        properties_file = os.environ["TEAMCITY_BUILD_PROPERTIES_FILE"]
-        print(f"found the properties file: {properties_file}")
-        with open(properties_file) as f: 
-            print(f.read())
-    else: 
-        print("didn't find property file")
+    print("some big change")
 
-    for key, value in os.environ.items():
-        if "TEAMCITY" in key:
-            print(f"{key} = {value}")
+    print("changing1111")
+
+    pf = os.environ["TEAMCITY_BUILD_PROPERTIES_FILE"]
+
+    with open(pf) as f: 
+        print(f.read())
 
 
 
