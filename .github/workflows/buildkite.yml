@@ -1,0 +1,13 @@
+on:
+  pull_request:
+  push:
+    branches: [master]
+
+steps:
+  - name: Trigger a Buildkite Build
+    uses: "buildkite/trigger-pipeline-action@v1.5.0"
+    env:
+      BUILDKITE_API_ACCESS_TOKEN: 123456
+      PIPELINE: "redefine/Test"
+      COMMIT: "HEAD"
+      MESSAGE:  ":github: Triggered from a GitHub Action"

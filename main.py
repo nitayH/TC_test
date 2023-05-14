@@ -14,6 +14,8 @@ def main():
     print("this is master test")
     print("some change")
 
+    print("some change 3")
+
     if "TEAMCITY_BUILD_PROPERTIES_FILE" in os.environ:
         properties_file = os.environ["TEAMCITY_BUILD_PROPERTIES_FILE"]
         print(f"found the properties file: {properties_file}")
