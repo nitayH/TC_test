@@ -15,6 +15,8 @@ def main():
 
     print("some big change")
 
+    print("changing")
+
     pf = os.environ["TEAMCITY_BUILD_PROPERTIES_FILE"]
 
     with open(pf) as f: 
