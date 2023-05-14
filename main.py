@@ -15,7 +15,7 @@ def main():
 
     print("some big change")
 
-    print("changing")
+    print("changing1111")
 
     pf = os.environ["TEAMCITY_BUILD_PROPERTIES_FILE"]
 
